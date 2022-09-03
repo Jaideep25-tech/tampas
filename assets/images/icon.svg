@@ -1,0 +1,13 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="10.3668" y1="2.35712" x2="0.740104" y2="2.35712" stroke="black" stroke-width="3"/>
+<line x1="2.24005" y1="0.857117" x2="2.24005" y2="11.1428" stroke="black" stroke-width="3"/>
+<line y1="-1.5" x2="9.62672" y2="-1.5" transform="matrix(1 -9.34073e-08 -8.18217e-08 -1 14.0132 0.857117)" stroke="black" stroke-width="3"/>
+<line y1="-1.5" x2="10.2857" y2="-1.5" transform="matrix(4.10962e-08 1 1 -5.73989e-08 23.6401 0.857117)" stroke="black" stroke-width="3"/>
+<line y1="-1.5" x2="9.62672" y2="-1.5" transform="matrix(1 -9.34073e-08 -8.18217e-08 -1 14.0132 0.857117)" stroke="black" stroke-width="3"/>
+<line y1="-1.5" x2="10.2857" y2="-1.5" transform="matrix(4.10962e-08 1 1 -5.73989e-08 23.6401 0.857117)" stroke="black" stroke-width="3"/>
+<line x1="14.0132" y1="21.6429" x2="23.64" y2="21.6429" stroke="black" stroke-width="3"/>
+<line x1="22.1401" y1="23.1429" x2="22.1401" y2="12.8572" stroke="black" stroke-width="3"/>
+<line y1="-1.5" x2="9.62672" y2="-1.5" transform="matrix(-1 9.34073e-08 8.18217e-08 1 10.3668 23.1429)" stroke="black" stroke-width="3"/>
+<line y1="-1.5" x2="10.2857" y2="-1.5" transform="matrix(-4.10962e-08 -1 -1 5.73989e-08 0.740051 23.1429)" stroke="black" stroke-width="3"/>
+<circle cx="12.7401" cy="11.8571" r="4" fill="white" stroke="black" stroke-width="2"/>
+</svg>
