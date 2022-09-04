@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tampas/pages/homepage.dart';
@@ -9,6 +8,9 @@ import 'package:tampas/utils/size_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'dart:developer';
+import 'package:path/path.dart' as Path;
 
 class View extends StatefulWidget {
   @override
@@ -33,22 +35,6 @@ class _ViewState extends State<View> {
       await launch('https://flutter.dev');
     } else {
       print('could not launch');
-    }
-  }
-
-  openMl() async {
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('https://aws143.arnavgoyal4.repl.co/uploads'));
-    request.fields.addAll({'filename': '12345@abc'});
-    request.files.add(await http.MultipartFile.fromPath(
-        'files[]', '_xgT7avwy/sos42_launcher.jpeg'));
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-    } else {
-      print(response.reasonPhrase);
     }
   }
 
@@ -87,9 +73,45 @@ class _ViewState extends State<View> {
         });
   }
 
+  var res;
+  var _total = 100;
+  var current = 4;
+  Future<dynamic> sendForm(
+      Map<String, dynamic> data, Map<String, File> files) async {
+    try {
+      Map<String, MultipartFile> fileMap = {};
+      for (MapEntry fileEntry in files.entries) {
+        File file = fileEntry.value;
+        String fileName = Path.basename(file.path);
+        fileMap[fileEntry.key] = MultipartFile(
+          file.openRead(),
+          await file.length(),
+          filename: fileName,
+        );
+      }
+      data.addAll(fileMap);
+      var formData = FormData.fromMap(data);
+      Dio dio = Dio();
+      var response = await dio.post('https://aws143.arnavgoyal4.repl.co/upload',
+          data: formData, onSendProgress: (int sent, int total) {
+        log('$sent $total');
+        _total = total;
+        current = sent;
+      }, options: Options(contentType: 'multipart/form-data'));
+
+      res = response.data;
+    } catch (e) {
+      log(e.toString());
+    }
+    log(res.toString());
+    return res;
+  }
+
   void initState() {
     super.initState();
-    _selectImage(context);
+    Future.delayed(Duration.zero, () {
+      _selectImage(context);
+    });
   }
 
   @override
@@ -353,7 +375,7 @@ class _ViewState extends State<View> {
                     MaterialButton(
                         minWidth: getProportionateScreenWidth(130),
                         onPressed: () {
-                          openMl();
+                          sendForm({}, {'files[]': image!});
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
