@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "902580731301",
+    "project_id": "tampas-8b00d",
+    "storage_bucket": "tampas-8b00d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902580731301:android:25b19843c8b1401a80bc4c",
+        "android_client_info": {
+          "package_name": "com.example.tampas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902580731301-i53svn2nu6egma4v7bj7dq8qcmcbdmvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTH85Sa016jjq1unFqNRKqxCBLDcaasbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902580731301-i53svn2nu6egma4v7bj7dq8qcmcbdmvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

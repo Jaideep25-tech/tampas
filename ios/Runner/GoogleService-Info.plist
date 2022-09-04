@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>902580731301-3b0elhmlg3tidpf4ev3sa8kciv280e8n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.902580731301-3b0elhmlg3tidpf4ev3sa8kciv280e8n</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBKtrCmc3lSJHIWoq_4gFQVh-SCE8qIqnM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>902580731301</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.tampas</string>
+	<key>PROJECT_ID</key>
+	<string>tampas-8b00d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tampas-8b00d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:902580731301:ios:f9856182e31ba24380bc4c</string>
+</dict>
+</plist>

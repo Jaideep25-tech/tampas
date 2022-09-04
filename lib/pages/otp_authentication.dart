@@ -12,7 +12,7 @@ class otpVerification extends StatefulWidget {
   final String name;
   final String address;
   final String email;
-  const otpVerification(this.number, this.address, this.name,this.email);
+  const otpVerification(this.number, this.address, this.name, this.email);
   @override
   _otpVerificationState createState() => _otpVerificationState();
 }
@@ -61,7 +61,7 @@ class _otpVerificationState extends State<otpVerification> {
       'name': widget.name,
       'address': widget.address,
       'user ID': uid,
-      'email': widget.email, 
+      'email': widget.email,
     });
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (c) => View()));
@@ -168,7 +168,7 @@ class _otpVerificationState extends State<otpVerification> {
                               padding: EdgeInsets.symmetric(
                                   vertical: getProportionateScreenHeight(15),
                                   horizontal: getProportionateScreenWidth(25)),
-                              child: Text('Buy now',
+                              child: Text('continue',
                                   style: TextStyle(
                                       fontSize: getProportionateScreenWidth(15),
                                       color: Colors.black))),

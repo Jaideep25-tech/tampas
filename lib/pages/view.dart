@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tampas/pages/homepage.dart';
 import 'package:tampas/pages/order.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tampas/utils/size_config.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class View extends StatefulWidget {
   @override
@@ -20,8 +25,76 @@ class _ViewState extends State<View> {
   bool selected3 = false;
   bool selected4 = false;
   final _offerController1 = PageController();
+  File? image;
+  final picker = ImagePicker();
+
+  openurl() async {
+    if (await canLaunch('https://flutter.dev')) {
+      await launch('https://flutter.dev');
+    } else {
+      print('could not launch');
+    }
+  }
+
+  openMl() async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('https://aws143.arnavgoyal4.repl.co/uploads'));
+    request.fields.addAll({'filename': '12345@abc'});
+    request.files.add(await http.MultipartFile.fromPath(
+        'files[]', '_xgT7avwy/sos42_launcher.jpeg'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  _selectImage(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: const Text('Create a Post'),
+            children: [
+              SimpleDialogOption(
+                padding: const EdgeInsets.all(8),
+                onPressed: (() async {
+                  Navigator.of(context).pop();
+                  final file =
+                      await picker.pickImage(source: ImageSource.camera);
+                  if (file != null) {
+                    setState(() {
+                      image = File(file.path);
+                    });
+                  } else {
+                    // showSnackBar(context, "Take A Images");
+                  }
+                }),
+                child: const Text("Take a Photo"),
+              ),
+              SimpleDialogOption(
+                padding: const EdgeInsets.all(8),
+                onPressed: (() {
+                  Navigator.of(context).pop();
+                }),
+                child: const Text("Cancel"),
+              ),
+            ],
+          );
+        });
+  }
+
+  void initState() {
+    super.initState();
+    _selectImage(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -278,8 +351,10 @@ class _ViewState extends State<View> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     MaterialButton(
-                        minWidth: getProportionateScreenWidth(180),
-                        onPressed: () {},
+                        minWidth: getProportionateScreenWidth(130),
+                        onPressed: () {
+                          openMl();
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                             side: const BorderSide(color: Colors.black)),
@@ -291,8 +366,10 @@ class _ViewState extends State<View> {
                                 fontSize: getProportionateScreenWidth(15),
                                 color: Colors.black))),
                     MaterialButton(
-                        minWidth: getProportionateScreenWidth(50),
-                        onPressed: () {},
+                        minWidth: getProportionateScreenWidth(30),
+                        onPressed: () {
+                          openurl();
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                             side: const BorderSide(color: Colors.black)),
@@ -301,7 +378,7 @@ class _ViewState extends State<View> {
                             horizontal: getProportionateScreenWidth(25)),
                         child: SvgPicture.asset('assets/images/icon.svg')),
                     MaterialButton(
-                        minWidth: getProportionateScreenWidth(180),
+                        minWidth: getProportionateScreenWidth(130),
                         onPressed: () {},
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
@@ -326,7 +403,7 @@ class _ViewState extends State<View> {
                   height: getProportionateScreenHeight(15),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
@@ -361,7 +438,7 @@ class _ViewState extends State<View> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
@@ -396,7 +473,7 @@ class _ViewState extends State<View> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
@@ -431,7 +508,7 @@ class _ViewState extends State<View> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
@@ -464,6 +541,9 @@ class _ViewState extends State<View> {
                       ],
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
                 ),
                 Center(
                   child: MaterialButton(
